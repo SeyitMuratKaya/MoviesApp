@@ -104,11 +104,11 @@
 				2F198DF82AF8F852001D607E /* AppDelegate.swift */,
 				2F198DFA2AF8F852001D607E /* SceneDelegate.swift */,
 				2F198DFC2AF8F852001D607E /* ViewController.swift */,
-				2F198E282AF8FA22001D607E /* Keys.swift */,
 				2F198DFE2AF8F852001D607E /* Main.storyboard */,
 				2F198E012AF8F855001D607E /* Assets.xcassets */,
 				2F198E032AF8F855001D607E /* LaunchScreen.storyboard */,
 				2F198E062AF8F855001D607E /* Info.plist */,
+				2F198E282AF8FA22001D607E /* Keys.swift */,
 			);
 			path = MoviesApp;
 			sourceTree = "<group>";
