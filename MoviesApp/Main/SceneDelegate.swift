@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let networkManager: NetworkManagerProtocol = WebManager()
         let viewModel = MovieListViewModel(networkManager: networkManager)
-        window?.rootViewController = MovieListViewController(viewModel: viewModel)
+        window?.rootViewController = UINavigationController(rootViewController: MovieListViewController(viewModel: viewModel))
         window?.makeKeyAndVisible()
     }
 

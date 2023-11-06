@@ -14,13 +14,16 @@ class MovieListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         viewModel.getMovies(for: "the batman")
         setupUI()
+        setupSearchController()
     }
     
     private func setupUI() {
@@ -32,6 +35,18 @@ class MovieListViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+    
+    private func setupSearchController() {
+        self.searchController.searchResultsUpdater = self
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        self.searchController.hidesNavigationBarDuringPresentation = false
+        self.searchController.searchBar.placeholder = "Search Movies"
+        self.searchController.searchBar.delegate = self
+        
+        self.navigationItem.searchController = searchController
+        self.definesPresentationContext = false
+        self.navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     private let viewModel: MovieListViewModel
@@ -52,6 +67,7 @@ class MovieListViewController: UIViewController {
 extension MovieListViewController: MovieListViewDelegate {
     func setMovies(movies: Movies) {
         DispatchQueue.main.async {
+            print(movies)
             self.movies = movies
             self.tableView.reloadData()
         }
@@ -77,5 +93,16 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = MovieViewController(viewModel: viewModel, movieId: movies?.search[indexPath.row].imdbID ?? "")
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+    }
+}
+
+extension MovieListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+    }
+}
+
+extension MovieListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.viewModel.getMovies(for: searchBar.text ?? "")
     }
 }
