@@ -7,21 +7,32 @@
 
 import UIKit
 
-class MovieViewController: UIViewController {
-
+class MovieViewController: UIViewController, MovieViewDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        WebManager().fetchMovie(withId: "tt0372784") { result in
-            switch result {
-            case .success(let success):
-                print(success)
-            case .failure(let failure):
-                print(failure.localizedDescription)
-            }
-        }
+        setupUI()
+        viewModel.getMovie(withId: "tt0372784")
     }
-
-
+    
+    private func setupUI() {
+        
+    }
+    
+    private var viewModel: MovieViewModel
+    
+    init(viewModel: MovieViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setMovie(movie: Movie) {
+        
+    }
 }
 
