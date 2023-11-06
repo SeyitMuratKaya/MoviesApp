@@ -18,9 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
+//        let networkManager: NetworkManagerProtocol = WebManager()
+//        let viewModel = MovieViewModel(networkManager: networkManager)
+//        window?.rootViewController = MovieViewController(viewModel: viewModel)
+        
         let networkManager: NetworkManagerProtocol = WebManager()
-        let viewModel = MovieViewModel(networkManager: networkManager)
-        window?.rootViewController = MovieViewController(viewModel: viewModel)
+        let viewModel = MovieListViewModel(networkManager: networkManager)
+        window?.rootViewController = MovieListViewController(viewModel: viewModel)
         window?.makeKeyAndVisible()
     }
 

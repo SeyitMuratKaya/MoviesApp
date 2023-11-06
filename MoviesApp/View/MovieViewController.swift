@@ -44,7 +44,7 @@ class MovieViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        viewModel.getMovie(withId: "tt0372784")
+        viewModel.getMovie(withId: movieId)
     }
     
     private func setupUI() {
@@ -80,9 +80,11 @@ class MovieViewController: UIViewController {
     }
     
     private var viewModel: MovieViewModel
+    var movieId: String
     
-    init(viewModel: MovieViewModel) {
+    init(viewModel: MovieViewModel, movieId: String) {
         self.viewModel = viewModel
+        self.movieId = movieId
         super.init(nibName: nil, bundle: nil)
         self.viewModel.delegate = self
     }

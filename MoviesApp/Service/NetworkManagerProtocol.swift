@@ -9,6 +9,7 @@ import Foundation
 
 protocol NetworkManagerProtocol {
     func fetchMovie(withId id: String, completion: @escaping (Result<Movie, NetworkError>) -> ())
+    func fetchMovies(for searchText: String, completion: @escaping (Result<Movies,NetworkError>) -> ())
 }
 
 enum NetworkError: Error {
