@@ -99,13 +99,15 @@
 		2F198DF72AF8F852001D607E /* MoviesApp */ = {
 			isa = PBXGroup;
 			children = (
-				2F198DF82AF8F852001D607E /* AppDelegate.swift */,
-				2F198DFA2AF8F852001D607E /* SceneDelegate.swift */,
-				2F198DFC2AF8F852001D607E /* ViewController.swift */,
-				2F198E012AF8F855001D607E /* Assets.xcassets */,
-				2F198E032AF8F855001D607E /* LaunchScreen.storyboard */,
-				2F198E062AF8F855001D607E /* Info.plist */,
+				2F198E2A2AF8FC2C001D607E /* Main */,
+				2F198E2D2AF8FC7E001D607E /* Model */,
+				2F198E2B2AF8FC49001D607E /* View */,
+				2F198E2E2AF8FC9E001D607E /* ViewModel */,
+				2F198E2C2AF8FC5E001D607E /* Service */,
+				2F198E2F2AF8FDDA001D607E /* Extension */,
+				2F198E302AF8FDEA001D607E /* Constants */,
 				2F198E282AF8FA22001D607E /* Keys.swift */,
+				2F198E062AF8F855001D607E /* Info.plist */,
 			);
 			path = MoviesApp;
 			sourceTree = "<group>";
@@ -125,6 +127,60 @@
 				2F198E1B2AF8F855001D607E /* MoviesAppUITestsLaunchTests.swift */,
 			);
 			path = MoviesAppUITests;
+			sourceTree = "<group>";
+		};
+		2F198E2A2AF8FC2C001D607E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2F198DFA2AF8F852001D607E /* SceneDelegate.swift */,
+				2F198DF82AF8F852001D607E /* AppDelegate.swift */,
+				2F198E012AF8F855001D607E /* Assets.xcassets */,
+				2F198E032AF8F855001D607E /* LaunchScreen.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2F198E2B2AF8FC49001D607E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2F198DFC2AF8F852001D607E /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2F198E2C2AF8FC5E001D607E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		2F198E2D2AF8FC7E001D607E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2F198E2E2AF8FC9E001D607E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2F198E2F2AF8FDDA001D607E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		2F198E302AF8FDEA001D607E /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
