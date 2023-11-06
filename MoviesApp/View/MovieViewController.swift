@@ -41,6 +41,14 @@ class MovieViewController: UIViewController {
         return label
     }()
     
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "arrowshape.left.fill"), for: .normal)
+        button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -54,9 +62,13 @@ class MovieViewController: UIViewController {
         view.addSubview(castLabel)
         view.addSubview(directorLabel)
         view.addSubview(ratingLabel)
+        view.addSubview(backButton)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            
+            imageView.topAnchor.constraint(equalTo: backButton.bottomAnchor),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
@@ -108,3 +120,8 @@ extension MovieViewController: MovieViewDelegate {
     }
 }
 
+extension MovieViewController {
+    @objc private func backButtonTapped() {
+        dismiss(animated: true)
+    }
+}

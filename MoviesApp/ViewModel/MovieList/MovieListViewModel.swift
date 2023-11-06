@@ -21,8 +21,8 @@ class MovieListViewModel {
             switch result {
             case .success(let movies):
                 self?.delegate?.setMovies(movies: movies)
-            case .failure(let error):
-                print(error.localizedDescription)
+            case .failure(_):
+                self?.delegate?.setErrors()
             }
         }
     }

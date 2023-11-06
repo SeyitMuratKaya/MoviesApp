@@ -17,8 +17,16 @@ class MovieListViewController: UIViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
     
+    private lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "no movies found"
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         tableView.delegate = self
         tableView.dataSource = self
         viewModel.getMovies(for: "the batman")
@@ -34,6 +42,13 @@ class MovieListViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+        
+        view.addSubview(errorLabel)
+        
+        NSLayoutConstraint.activate([
+            errorLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            errorLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
     
@@ -65,10 +80,21 @@ class MovieListViewController: UIViewController {
 }
 
 extension MovieListViewController: MovieListViewDelegate {
+    func setErrors() {
+        DispatchQueue.main.async {
+            self.movies = nil
+            self.tableView.isHidden = true
+            self.errorLabel.isHidden = false
+            self.tableView.reloadData()
+        }
+    }
+    
     func setMovies(movies: Movies) {
         DispatchQueue.main.async {
             print(movies)
             self.movies = movies
+            self.tableView.isHidden = false
+            self.errorLabel.isHidden = true
             self.tableView.reloadData()
         }
     }
