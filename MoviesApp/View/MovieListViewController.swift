@@ -12,6 +12,8 @@ class MovieListViewController: UIViewController {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(MovieListTableViewCell.self, forCellReuseIdentifier: MovieListTableViewCell.identifier)
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -106,10 +108,9 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        var config = cell.defaultContentConfiguration()
-        config.text = self.movies?.search[indexPath.row].title
-        cell.contentConfiguration = config
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieListTableViewCell.identifier, for: indexPath) as? MovieListTableViewCell else { return UITableViewCell() }
+        cell.configureCell(posterImage: movies?.search[indexPath.row].poster ?? "",titleLabel: movies?.search[indexPath.row].title ?? "", yearLabel: movies?.search[indexPath.row].year ?? "", typeLabel: movies?.search[indexPath.row].type.rawValue ?? "")
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -119,6 +120,10 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = MovieViewController(viewModel: viewModel, movieId: movies?.search[indexPath.row].imdbID ?? "")
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        150
     }
 }
 

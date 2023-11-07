@@ -28,6 +28,7 @@
 		2F198E492AF9248C001D607E /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F198E482AF9248C001D607E /* Movies.swift */; };
 		2F198E4D2AF9262C001D607E /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F198E4C2AF9262C001D607E /* MovieListViewModel.swift */; };
 		2F198E4F2AF92643001D607E /* MovieListViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F198E4E2AF92643001D607E /* MovieListViewDelegate.swift */; };
+		2F6A19672AFA3EE2009DB7A9 /* MovieListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6A19662AFA3EE2009DB7A9 /* MovieListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		2F198E482AF9248C001D607E /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		2F198E4C2AF9262C001D607E /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		2F198E4E2AF92643001D607E /* MovieListViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewDelegate.swift; sourceTree = "<group>"; };
+		2F6A19662AFA3EE2009DB7A9 /* MovieListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,7 +133,6 @@
 				2F198E2F2AF8FDDA001D607E /* Extension */,
 				2F198E302AF8FDEA001D607E /* Constants */,
 				2F198E282AF8FA22001D607E /* Keys.swift */,
-				2F198E062AF8F855001D607E /* Info.plist */,
 			);
 			path = MoviesApp;
 			sourceTree = "<group>";
@@ -160,6 +161,7 @@
 				2F198DFA2AF8F852001D607E /* SceneDelegate.swift */,
 				2F198E012AF8F855001D607E /* Assets.xcassets */,
 				2F198E032AF8F855001D607E /* LaunchScreen.storyboard */,
+				2F198E062AF8F855001D607E /* Info.plist */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -169,6 +171,7 @@
 			children = (
 				2F198DFC2AF8F852001D607E /* MovieViewController.swift */,
 				2F198E462AF923B5001D607E /* MovieListViewController.swift */,
+				2F6A19662AFA3EE2009DB7A9 /* MovieListTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,8 +198,8 @@
 		2F198E2E2AF8FC9E001D607E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				2F198E4B2AF92618001D607E /* MovieList */,
 				2F198E4A2AF92606001D607E /* Movie */,
+				2F198E4B2AF92618001D607E /* MovieList */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				2F198E342AF90020001D607E /* Movie.swift in Sources */,
 				2F198E4D2AF9262C001D607E /* MovieListViewModel.swift in Sources */,
 				2F198E472AF923B5001D607E /* MovieListViewController.swift in Sources */,
+				2F6A19672AFA3EE2009DB7A9 /* MovieListTableViewCell.swift in Sources */,
 				2F198E382AF90134001D607E /* WebManager.swift in Sources */,
 				2F198DF92AF8F852001D607E /* AppDelegate.swift in Sources */,
 				2F198E402AF90ED7001D607E /* MovieViewDelegate.swift in Sources */,
@@ -560,7 +564,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 253GAU5X5Q;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MoviesApp/Info.plist;
+				INFOPLIST_FILE = MoviesApp/Main/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -587,7 +591,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 253GAU5X5Q;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MoviesApp/Info.plist;
+				INFOPLIST_FILE = MoviesApp/Main/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
