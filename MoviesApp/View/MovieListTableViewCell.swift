@@ -24,7 +24,7 @@ class MovieListTableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 22)
+        label.font = UIFont.boldSystemFont(ofSize: Constants.Font.large)
         label.textAlignment = .left
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 0
@@ -34,7 +34,7 @@ class MovieListTableViewCell: UITableViewCell {
     private lazy var yearLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: Constants.Font.medium)
         label.textAlignment = .left
         label.textColor = .secondaryLabel
         return label
@@ -43,7 +43,7 @@ class MovieListTableViewCell: UITableViewCell {
     private lazy var typeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: Constants.Font.medium)
         label.textAlignment = .left
         label.textColor = .secondaryLabel
         return label

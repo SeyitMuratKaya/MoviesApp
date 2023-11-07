@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
 //        let networkManager: NetworkManagerProtocol = WebManager()
 //        let viewModel = MovieViewModel(networkManager: networkManager)
-//        window?.rootViewController = MovieViewController(viewModel: viewModel)
+//        window?.rootViewController = MovieViewController(viewModel: viewModel, movieId: "tt0317219")
         
         let networkManager: NetworkManagerProtocol = WebManager()
         let viewModel = MovieListViewModel(networkManager: networkManager)

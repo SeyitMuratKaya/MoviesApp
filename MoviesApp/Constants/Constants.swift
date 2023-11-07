@@ -16,4 +16,18 @@ struct Constants {
         static let type = "&type="
         static let year = "&y="
     }
+    
+    struct Margin {
+        static let large: CGFloat = 24
+        static let regular: CGFloat = 12
+        static let small: CGFloat = 4
+    }
+    
+    struct Font {
+        static let extraLarge: CGFloat = 30
+        static let large: CGFloat = 22
+        static let medium: CGFloat = 16
+        static let medium2: CGFloat = 14
+        static let regular: CGFloat = 12
+    }
 }
