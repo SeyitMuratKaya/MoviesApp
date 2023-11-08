@@ -22,7 +22,7 @@ class MovieListViewController: UIViewController {
     private lazy var errorLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "no movies found"
+        label.text = "NO MOVIES FOUND"
         return label
     }()
     
