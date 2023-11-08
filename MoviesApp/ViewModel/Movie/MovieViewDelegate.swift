@@ -9,4 +9,5 @@ import Foundation
 
 protocol MovieViewDelegate: AnyObject {
     func setMovie(movie: Movie)
+    func setErrors()
 }

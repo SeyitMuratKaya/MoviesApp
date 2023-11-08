@@ -9,28 +9,108 @@ import XCTest
 @testable import MoviesApp
 
 final class MoviesAppTests: XCTestCase {
-
+    
+    private var webManager: MockNetworkManager!
+    
+    // Movie View Controller
+    private var movieViewModel: MovieViewModel!
+    private var movieViewDelegate: MockMovieViewDelegate!
+    
+    // Movie List View Controller
+    private var movieListViewModel: MovieListViewModel!
+    private var movieListViewDelegate: MockMovieListViewDelegate!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        webManager = MockNetworkManager()
+        
+        movieViewModel = MovieViewModel(networkManager: webManager)
+        movieViewDelegate = MockMovieViewDelegate()
+        movieViewModel.delegate = movieViewDelegate
+        
+        movieListViewModel = MovieListViewModel(networkManager: webManager)
+        movieListViewDelegate = MockMovieListViewDelegate()
+        movieListViewModel.delegate = movieListViewDelegate
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        webManager = nil
+        movieViewModel = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testMovieView_whenApiSuccess_showMovie() throws {
+        let mockMovie = Movie(title: "Cars", year: "", rated: "", released: "", runtime: "", genre: "", director: "", writer: "", actors: "", plot: "", language: "", country: "", awards: "", poster: "", ratings: [], metascore: "", imdbRating: "", imdbVotes: "", imdbID: "", type: "", dvd: "", boxOffice: "", production: "", website: "", response: "")
+        
+        webManager.fetchMovieMockResult = .success(mockMovie)
+        movieViewModel.getMovie(withId: "tt1111")
+        
+        XCTAssertEqual(movieViewDelegate.movie?.title, mockMovie.title)
     }
+    
+    func testMovieView_whenApiFailure_showsNil() throws {
+        webManager.fetchMovieMockResult = .failure(NetworkError.networkError)
+        
+        movieViewModel.getMovie(withId: "tt1111")
+        
+        XCTAssertEqual(movieViewDelegate.movie?.title, nil)
+    }
+    
+    func testMovieListView_whenApiSuccess_showMovies() throws {
+        let mockMovies = Movies(search: [], totalResults: "2", response: "")
+        
+        webManager.fetchMoviesMockResult = .success(mockMovies)
+        movieListViewModel.getMovies(for: "")
+        
+        XCTAssertEqual(movieListViewDelegate.movies?.totalResults, mockMovies.totalResults)
+    }
+    
+    func testMovieListView_whenApiFailure_showsNotFound() throws {
+        webManager.fetchMoviesMockResult = .failure(NetworkError.networkError)
+        
+        movieListViewModel.getMovies(for: "")
+        
+        XCTAssertEqual(movieListViewDelegate.movies?.totalResults, nil)
+    }
+    
+}
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+class MockNetworkManager: NetworkManagerProtocol {
+    var fetchMovieMockResult: Result<MoviesApp.Movie, MoviesApp.NetworkError>?
+    var fetchMoviesMockResult: Result<MoviesApp.Movies, MoviesApp.NetworkError>?
+    
+    func fetchMovie(withId id: String, completion: @escaping (Result<MoviesApp.Movie, MoviesApp.NetworkError>) -> ()) {
+        if let result = fetchMovieMockResult {
+            completion(result)
         }
     }
+    
+    func fetchMovies(for searchText: String, completion: @escaping (Result<MoviesApp.Movies, MoviesApp.NetworkError>) -> ()) {
+        if let result = fetchMoviesMockResult {
+            completion(result)
+        }
+    }
+}
 
+class MockMovieViewDelegate: MovieViewDelegate {
+    var movie: Movie?
+    
+    func setMovie(movie: MoviesApp.Movie) {
+        self.movie = movie
+    }
+    
+    func setErrors() {
+        self.movie = nil
+    }
+    
+}
+
+class MockMovieListViewDelegate: MovieListViewDelegate {
+    var movies: Movies?
+    
+    func setMovies(movies: MoviesApp.Movies) {
+        self.movies = movies
+    }
+    
+    func setErrors() {
+        self.movies = nil
+    }
 }

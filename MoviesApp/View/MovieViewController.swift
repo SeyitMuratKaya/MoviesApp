@@ -375,6 +375,10 @@ extension MovieViewController: MovieViewDelegate {
             self.castLabel.text = "Actors: \(movie.actors)"
         }
     }
+    
+    func setErrors() {
+        
+    }
 }
 
 extension MovieViewController {
