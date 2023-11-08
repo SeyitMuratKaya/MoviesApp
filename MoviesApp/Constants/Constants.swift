@@ -20,6 +20,7 @@ struct Constants {
     struct Margin {
         static let large: CGFloat = 24
         static let regular: CGFloat = 12
+        static let medium: CGFloat = 6
         static let small: CGFloat = 4
     }
     

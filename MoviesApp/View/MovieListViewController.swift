@@ -28,6 +28,7 @@ class MovieListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Movies"
         view.backgroundColor = .systemBackground
         tableView.delegate = self
         tableView.dataSource = self
@@ -93,7 +94,6 @@ extension MovieListViewController: MovieListViewDelegate {
     
     func setMovies(movies: Movies) {
         DispatchQueue.main.async {
-            print(movies)
             self.movies = movies
             self.tableView.isHidden = false
             self.errorLabel.isHidden = true

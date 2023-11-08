@@ -31,6 +31,22 @@ class MovieListTableViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var yearIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.image = UIImage(systemName: "calendar")
+        icon.tintColor = .secondaryLabel
+        return icon
+    }()
+    
+    private lazy var typeIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.translatesAutoresizingMaskIntoConstraints = false
+        icon.image = UIImage(systemName: "movieclapper")
+        icon.tintColor = .secondaryLabel
+        return icon
+    }()
+    
     private lazy var yearLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -63,25 +79,31 @@ class MovieListTableViewCell: UITableViewCell {
         contentView.addSubview(posterImage)
         contentView.addSubview(titleLabel)
         contentView.addSubview(yearLabel)
+        contentView.addSubview(yearIcon)
         contentView.addSubview(typeLabel)
+        contentView.addSubview(typeIcon)
                 
         NSLayoutConstraint.activate([
-            posterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
-            posterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
-            posterImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -6),
+            posterImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Margin.medium),
+            posterImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.Margin.medium),
+            posterImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Constants.Margin.medium),
             posterImage.widthAnchor.constraint(equalToConstant: 90),
             
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6),
-            titleLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 6),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.Margin.medium),
+            titleLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: Constants.Margin.regular),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Constants.Margin.medium),
             
-            yearLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 4),
-            yearLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 6),
-            yearLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
+            yearIcon.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Constants.Margin.medium),
+            yearIcon.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: Constants.Margin.regular),
+            
+            yearLabel.centerYAnchor.constraint(equalTo: yearIcon.centerYAnchor),
+            yearLabel.leadingAnchor.constraint(equalTo: yearIcon.trailingAnchor, constant: Constants.Margin.medium),
+            
+            typeIcon.topAnchor.constraint(equalTo: yearIcon.bottomAnchor, constant: Constants.Margin.regular),
+            typeIcon.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: Constants.Margin.regular),
  
-            typeLabel.topAnchor.constraint(equalTo: yearLabel.bottomAnchor, constant: 4),
-            typeLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 6),
-            typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -6),
+            typeLabel.centerYAnchor.constraint(equalTo: typeIcon.centerYAnchor),
+            typeLabel.leadingAnchor.constraint(equalTo: typeIcon.trailingAnchor, constant: Constants.Margin.medium),
         ])
     }
     
