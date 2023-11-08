@@ -9,33 +9,35 @@ import XCTest
 
 final class MoviesAppUITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testSearchMovie() throws {
         let app = XCUIApplication()
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+       
+        let searchBar = app.navigationBars["MoviesApp.MovieListView"].searchFields["Search Movies"]
+        let searchButton = app/*@START_MENU_TOKEN@*/.buttons["Search"]/*[[".keyboards",".buttons[\"Ara\"]",".buttons[\"Search\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        
+        searchBar.tap()
+        searchBar.typeText("Cars")
+        searchButton.tap()
+        
+        let searchedMovie = app.tables/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"Cars")/*[[".cells.containing(.staticText, identifier:\"(2006)\")",".cells.containing(.staticText, identifier:\"Cars\")"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.children(matching: .other).element(boundBy: 1)
+        
+        XCTAssertTrue(searchedMovie.exists)
     }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+    
+    func testUnexistingMovie() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        let searchBar = app.navigationBars["MoviesApp.MovieListView"].searchFields["Search Movies"]
+        let searchButton = app/*@START_MENU_TOKEN@*/.buttons["Search"]/*[[".keyboards",".buttons[\"Ara\"]",".buttons[\"Search\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        
+        searchBar.tap()
+        searchBar.typeText("NotARealMovie")
+        searchButton.tap()
+        
+        let searchedMovie = app.tables.cells.containing(.staticText, identifier:"NotARealMovie").children(matching: .other).element(boundBy: 1)
+        
+        XCTAssertFalse(searchedMovie.exists)
     }
 }
