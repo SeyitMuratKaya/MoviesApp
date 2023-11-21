@@ -10,6 +10,7 @@ import Foundation
 class MovieListViewModel {
     private let networkManager: NetworkManagerProtocol
     weak var delegate: MovieListViewDelegate?
+    var movies: Movies?
     
     init(networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager

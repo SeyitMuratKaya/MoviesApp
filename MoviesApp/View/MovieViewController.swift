@@ -10,6 +10,27 @@ import Kingfisher
 
 class MovieViewController: UIViewController {
     
+    private var viewModel: MovieViewModel
+    var movieId: String
+    
+    init(viewModel: MovieViewModel, movieId: String) {
+        self.viewModel = viewModel
+        self.movieId = movieId
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel.delegate = self
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        setupUI()
+        viewModel.getMovie(withId: movieId)
+    }
+    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -182,13 +203,6 @@ class MovieViewController: UIViewController {
         return button
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        setupUI()
-        viewModel.getMovie(withId: movieId)
-    }
-    
     private func setupUI() {
         
         view.addSubview(blurImageView)
@@ -313,20 +327,6 @@ class MovieViewController: UIViewController {
             castLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.Margin.regular),
             castLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.Margin.regular),
         ])
-    }
-    
-    private var viewModel: MovieViewModel
-    var movieId: String
-    
-    init(viewModel: MovieViewModel, movieId: String) {
-        self.viewModel = viewModel
-        self.movieId = movieId
-        super.init(nibName: nil, bundle: nil)
-        self.viewModel.delegate = self
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     private func makeAction(withImage image: String, withTitle title: String) -> UIStackView {
