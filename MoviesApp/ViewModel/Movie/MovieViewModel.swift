@@ -10,9 +10,11 @@ import Foundation
 class MovieViewModel {
     private let networkManager: NetworkManagerProtocol
     weak var delegate: MovieViewDelegate?
+    var movieId: String
     
-    init(networkManager: NetworkManagerProtocol) {
+    init(networkManager: NetworkManagerProtocol, movieId: String) {
         self.networkManager = networkManager
+        self.movieId = movieId
     }
     
     func getMovie(withId id: String) {

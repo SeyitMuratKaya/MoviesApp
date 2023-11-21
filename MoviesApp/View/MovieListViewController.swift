@@ -115,9 +115,9 @@ extension MovieListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let networkManager: NetworkManagerProtocol = WebManager()
-        let viewModel = MovieViewModel(networkManager: networkManager)
         let movieId = self.viewModel.movies?.search[indexPath.row].imdbID
-        let vc = MovieViewController(viewModel: viewModel, movieId: movieId ?? "")
+        let viewModel = MovieViewModel(networkManager: networkManager, movieId: movieId ?? "")
+        let vc = MovieViewController(viewModel: viewModel)
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }

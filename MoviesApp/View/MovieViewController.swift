@@ -11,11 +11,9 @@ import Kingfisher
 class MovieViewController: UIViewController {
     
     private var viewModel: MovieViewModel
-    var movieId: String
     
-    init(viewModel: MovieViewModel, movieId: String) {
+    init(viewModel: MovieViewModel) {
         self.viewModel = viewModel
-        self.movieId = movieId
         super.init(nibName: nil, bundle: nil)
         self.viewModel.delegate = self
     }
@@ -28,7 +26,7 @@ class MovieViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         setupUI()
-        viewModel.getMovie(withId: movieId)
+        viewModel.getMovie(withId: self.viewModel.movieId)
     }
     
     private lazy var imageView: UIImageView = {
